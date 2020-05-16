@@ -1,0 +1,35 @@
+{
+	"info": {
+		"_postman_id": "e9b783bb-86f3-40a5-bc20-79fe18b5c65e",
+		"name": "AnatomySamples",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Books (With EvenNumberAuth)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "custom 12",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:10001/books",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "10001",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
