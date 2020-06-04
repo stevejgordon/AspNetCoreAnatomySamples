@@ -6,14 +6,35 @@
 	},
 	"item": [
 		{
-			"name": "GET Books (With EvenNumberAuth)",
+			"name": "1. GET Book",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:10001/books/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "10001",
+					"path": [
+						"books",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. GET Books (With EvenNumberAuth)",
 			"request": {
 				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
 						"value": "custom 12",
-						"type": "text"
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"url": {
@@ -25,6 +46,122 @@
 					"port": "10001",
 					"path": [
 						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. GET Authors (Preview Only)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Preview",
+						"type": "text",
+						"value": "true",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://localhost:10001/authors",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "10001",
+					"path": [
+						"authors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. GET Book (By date range)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:10001/books/by-range?startDate=2015-01-01&endDate=2020-01-01",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "10001",
+					"path": [
+						"books",
+						"by-range"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2015-01-01"
+						},
+						{
+							"key": "endDate",
+							"value": "2020-01-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. GET Book (Expired)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:10001/books/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "10001",
+					"path": [
+						"books",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6. GET Bang",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:10001/books/bang",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "10001",
+					"path": [
+						"books",
+						"bang"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7. GET Book (Current)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:10001/books/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "10001",
+					"path": [
+						"books",
+						"1"
 					]
 				}
 			},
