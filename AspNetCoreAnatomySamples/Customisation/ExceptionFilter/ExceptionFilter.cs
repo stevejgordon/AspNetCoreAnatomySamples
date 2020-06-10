@@ -24,8 +24,8 @@ namespace AspNetCoreAnatomySamples.Customisation.ExceptionFilter
             // If we're in production, send the custom formatted content with a general error
             // If we're not in production, send the custom formatted content with the exception message
             context.Result = _hostEnvironment.IsProduction()
-                ? (IActionResult)new JsonResult(new ApiError("An unhandled error occurred.")) { StatusCode = 500}
-                : (IActionResult)new JsonResult(new ApiError(context.Exception.Message)) {StatusCode = 500};
+                ? new JsonResult(new ApiError("An unhandled error occurred.")) { StatusCode = 500}
+                : new JsonResult(new ApiError(context.Exception.Message)) {StatusCode = 500};
 
             context.ExceptionHandled = true;
         }

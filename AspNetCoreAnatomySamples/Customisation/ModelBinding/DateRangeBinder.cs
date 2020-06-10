@@ -21,8 +21,11 @@ namespace AspNetCoreAnatomySamples.Customisation.ModelBinding
             var endDateValueProviderResult = bindingContext.ValueProvider.GetValue(endDateModelName);
 
             // if we are missing one or both of the parameter we can't bind the date range
-            if (startDateValueProviderResult == ValueProviderResult.None || endDateValueProviderResult == ValueProviderResult.None)
+            if (startDateValueProviderResult == ValueProviderResult.None || 
+                endDateValueProviderResult == ValueProviderResult.None)
             {
+                bindingContext.ModelState.TryAddModelError("dateRange", "A valid start and end date are required.");
+                bindingContext.Result = ModelBindingResult.Failed();
                 return Task.CompletedTask;
             }
 
@@ -53,10 +56,12 @@ namespace AspNetCoreAnatomySamples.Customisation.ModelBinding
                     // if we have dates but the end is prior to the start, DateRange throws.
                     // we catch that here and set an appropriate model error.
                     bindingContext.ModelState.TryAddModelError(e.ParamName, e.Message);
+                    bindingContext.Result = ModelBindingResult.Failed();
                 }
             }
 
-            // update model state with failures if either of the supplied properties can't be parsed as a valid date
+            // update model state with failures if either of the supplied properties can't be parsed as a
+            // valid date
 
             if (!validStartDate)
                 bindingContext.ModelState.TryAddModelError(startDateModelName, "A start date must be provided.");
@@ -77,7 +82,8 @@ namespace AspNetCoreAnatomySamples.Customisation.ModelBinding
             // if the required model type is DateRange, we return the DateRangeBinder
             // if we return null, other providers are checked.
 
-            return context.Metadata.ModelType == typeof(DateRange) ? new BinderTypeModelBinder(typeof(DateRangeBinder)) : null;
+            return context.Metadata.ModelType == typeof(DateRange) 
+                ? new BinderTypeModelBinder(typeof(DateRangeBinder)) : null;
         }
     }
 }
