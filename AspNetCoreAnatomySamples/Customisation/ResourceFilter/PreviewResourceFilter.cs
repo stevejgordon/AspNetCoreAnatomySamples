@@ -10,7 +10,8 @@ namespace AspNetCoreAnatomySamples.Customisation.ResourceFilter
         public void OnResourceExecuting(ResourceExecutingContext context)
         {
             // Is the preview header is missing or set to false we return not found
-            if (!context.HttpContext.Request.Headers.TryGetValue("Preview", out var previewValue) || !bool.TryParse(previewValue.SingleOrDefault(), out var previewEnabled) || !previewEnabled)
+            if (!context.HttpContext.Request.Headers.TryGetValue("Preview", out var previewValue) 
+                || !bool.TryParse(previewValue.SingleOrDefault(), out var previewEnabled) || !previewEnabled)
             {
                 context.Result = new NotFoundResult(); // short-circuit pipeline
             }
