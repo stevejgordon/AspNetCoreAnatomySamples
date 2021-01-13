@@ -69,6 +69,8 @@ namespace AspNetCoreAnatomySamples.Customisation.ModelBinding
             if (!validEndDate)
                 bindingContext.ModelState.TryAddModelError(endDateModelName, "An end date must be provided.");
 
+            bindingContext.Result = ModelBindingResult.Failed();
+
             return Task.CompletedTask;
         }
     }

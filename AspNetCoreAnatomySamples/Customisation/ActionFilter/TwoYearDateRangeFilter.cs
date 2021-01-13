@@ -19,7 +19,8 @@ namespace AspNetCoreAnatomySamples.Customisation.ActionFilter
                     // If not, return a bad request with problem details formatted content.
                     context.Result = new BadRequestObjectResult(new ValidationProblemDetails(new Dictionary<string, string[]>
                     {
-                        {"dateRange", new [] { "The date range (between the 'startDate' and 'endDate') must span less than two years." }}
+                        {"dateRange", new [] { "The date range (between the 'startDate' and 'endDate') must span less than " +
+                                               "two years." }}
                     }));
                 }
             }

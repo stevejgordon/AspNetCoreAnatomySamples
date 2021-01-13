@@ -31,7 +31,8 @@ namespace AspNetCoreAnatomySamples.Customisation.ActionFilter
         }
     }
 
-    public class ExpiredBookFilterAttribute : TypeFilterAttribute // Derives from TypeFilterAttribute so the filter when applied can include DI dependencies.
+    // Derives from TypeFilterAttribute so the filter when applied can include DI dependencies.
+    public class ExpiredBookFilterAttribute : TypeFilterAttribute
     {
         public ExpiredBookFilterAttribute() : base(typeof(ExpiredBookActionFilter)) { }
     }

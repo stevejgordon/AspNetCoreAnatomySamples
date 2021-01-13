@@ -7,12 +7,12 @@ using Microsoft.Net.Http.Headers;
 
 namespace AspNetCoreAnatomySamples.Customisation.AuthorizationFilter
 {
-    // ****************************************************************************************************************************************
-    // ****************************************************************************************************************************************
-    // IMPORTANT: It is NOT RECOMMENDED to use this approach. Instead use authorization policies with a custom requirement/handler when needed.
-    // JUST BECAUSE YOU CAN, DOESN'T MEAN YOU SHOULD!
-    // ****************************************************************************************************************************************
-    // ****************************************************************************************************************************************
+    // *************************************************************************************************
+    // *************************************************************************************************
+    // IMPORTANT: It is NOT RECOMMENDED to use this approach. Instead use authorization policies with a
+    // custom requirement/handler when needed. JUST BECAUSE YOU CAN, DOESN'T MEAN YOU SHOULD!
+    // *************************************************************************************************
+    // *************************************************************************************************
 
     public class EvenNumberAuthorizationAttribute : TypeFilterAttribute
     {
@@ -25,7 +25,8 @@ namespace AspNetCoreAnatomySamples.Customisation.AuthorizationFilter
     {
         private readonly ILogger<EvenNumberAuthorizationFilter> _logger;
 
-        public EvenNumberAuthorizationFilter(ILogger<EvenNumberAuthorizationFilter> logger) => _logger = logger; // only safe to inject singleton services
+        public EvenNumberAuthorizationFilter(ILogger<EvenNumberAuthorizationFilter> logger) => 
+            _logger = logger; // only safe to inject singleton services
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {

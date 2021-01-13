@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreAnatomySamples.Models
 {
+    // todo: IEquatable, IComparable etc.
+
     [ModelBinder(BinderType = typeof(DateRangeBinder))]
     public readonly struct DateRange
     {

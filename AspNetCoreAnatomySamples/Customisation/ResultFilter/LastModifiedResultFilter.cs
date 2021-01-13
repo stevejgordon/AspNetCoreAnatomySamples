@@ -10,7 +10,7 @@ namespace AspNetCoreAnatomySamples.Customisation.ResultFilter
         public override void OnResultExecuting(ResultExecutingContext context)
         {
             // Is the IActionResult an Ok with Object result and if so, is the object of type "MutableOutputModelBase"?
-            if (context.Result is OkObjectResult result && result.Value is MutableOutputModelBase outputModel)
+            if (context.Result is OkObjectResult {Value: MutableOutputModelBase outputModel})
             {
                 // If so, set the last modified header with the value from the output model
                 context.HttpContext.Response.GetTypedHeaders().LastModified = outputModel.LastModified;
