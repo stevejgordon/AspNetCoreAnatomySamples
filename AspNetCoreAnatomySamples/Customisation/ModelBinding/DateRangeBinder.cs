@@ -50,6 +50,8 @@ namespace AspNetCoreAnatomySamples.Customisation.ModelBinding
 
                     // set the binding result to success, with the bound DateRange
                     bindingContext.Result = ModelBindingResult.Success(dateRange);
+
+                    return Task.CompletedTask;
                 }
                 catch (ArgumentException e)
                 {
