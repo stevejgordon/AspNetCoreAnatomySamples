@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using AspNetCoreAnatomySamples.Models;
+﻿using AspNetCoreAnatomySamples.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 

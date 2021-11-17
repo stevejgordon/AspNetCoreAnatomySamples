@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AspNetCoreAnatomySamples.Data
+﻿namespace AspNetCoreAnatomySamples.Data
 {
     public class DtoBase
     {

@@ -1,7 +1,6 @@
 ﻿using AspNetCoreAnatomySamples.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Hosting;
 
 namespace AspNetCoreAnatomySamples.Customisation.ExceptionFilter
 {

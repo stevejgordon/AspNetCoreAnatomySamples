@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AspNetCoreAnatomySamples.Customisation.ResourceFilter;
+﻿using AspNetCoreAnatomySamples.Customisation.ResourceFilter;
 using AspNetCoreAnatomySamples.Models.Output;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreAnatomySamples.Controllers

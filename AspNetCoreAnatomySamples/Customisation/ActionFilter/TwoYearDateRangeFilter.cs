@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using AspNetCoreAnatomySamples.Models;
+﻿using AspNetCoreAnatomySamples.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 

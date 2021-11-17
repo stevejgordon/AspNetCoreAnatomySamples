@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AspNetCoreAnatomySamples.Models.Output
+﻿namespace AspNetCoreAnatomySamples.Models.Output
 {
     public abstract class MutableOutputModelBase
     {

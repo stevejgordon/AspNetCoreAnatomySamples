@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using AspNetCoreAnatomySamples.Customisation.ActionFilter;
+﻿using AspNetCoreAnatomySamples.Customisation.ActionFilter;
 using AspNetCoreAnatomySamples.Customisation.AuthorizationFilter;
 using AspNetCoreAnatomySamples.Data;
 using AspNetCoreAnatomySamples.Models;
 using AspNetCoreAnatomySamples.Models.Output;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace AspNetCoreAnatomySamples.Controllers
 {

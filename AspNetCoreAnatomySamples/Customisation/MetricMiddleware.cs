@@ -1,7 +1,5 @@
 ﻿using System.Diagnostics;
-using System.Threading.Tasks;
 using AspNetCoreAnatomySamples.Core;
-using Microsoft.AspNetCore.Http;
 
 namespace AspNetCoreAnatomySamples.Customisation
 {

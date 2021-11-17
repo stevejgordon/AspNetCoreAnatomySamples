@@ -1,5 +1,4 @@
-﻿using System;
-using AspNetCoreAnatomySamples.Customisation.ModelBinding;
+﻿using AspNetCoreAnatomySamples.Customisation.ModelBinding;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreAnatomySamples.Models

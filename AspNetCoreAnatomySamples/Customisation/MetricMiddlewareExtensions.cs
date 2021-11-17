@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-
-namespace AspNetCoreAnatomySamples.Customisation
+﻿namespace AspNetCoreAnatomySamples.Customisation
 {
     public static class MetricMiddlewareExtensions
     {

@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.Extensions.Logging;
-
-namespace AspNetCoreAnatomySamples.Core
+﻿namespace AspNetCoreAnatomySamples.Core
 {
     public class MetricRecorder : IMetricRecorder
     {

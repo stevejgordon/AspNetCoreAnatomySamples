@@ -1,61 +1,82 @@
-using System;
-using System.Net;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Connections;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using AspNetCoreAnatomySamples.Core;
+using AspNetCoreAnatomySamples.Customisation;
+using AspNetCoreAnatomySamples.Customisation.ExceptionFilter;
+using AspNetCoreAnatomySamples.Customisation.ModelBinding;
+using AspNetCoreAnatomySamples.Customisation.ResultFilter;
+using AspNetCoreAnatomySamples.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Diagnostics;
 
-namespace AspNetCoreAnatomySamples
+var builder = WebApplication.CreateBuilder(args);
+
+// Configure application services.
+
+builder.Services.AddControllersWithViews(options =>
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+    options.ModelBinderProviders.Insert(0, new DateRangeBinderProvider());
+    options.Filters.Add<HandleExceptionFilter>();
+    options.Filters.Add<LastModifiedResultFilter>();
+});
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    //webBuilder.ConfigureKestrel(serverOptions =>
-                    //{
-                    //    serverOptions.Listen(IPAddress.Any, 10000, listenOptions =>
-                    //    {
-                    //        //listenOptions.UseConnectionHandler<DoNothingHandler>();
+builder.Services.AddMemoryCache();
+builder.Services.AddSingleton<IBookRepository, BookRepository>();
+builder.Services.AddSingleton<IMetricRecorder, MetricRecorder>();
+builder.Services.AddResponseCompression(opt => opt.EnableForHttps = true); // Make sure you know what you're doing with this setting, See BREACH vulnerability.
 
-                    //        listenOptions.Use(next => async context =>
-                    //        {
-                    //            Console.WriteLine(context.RemoteEndPoint.ToString());
+builder.Services.AddAuthentication(opt =>
+{
+    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    opt.DefaultForbidScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer();
 
-                    //            await next(context);
+var app = builder.Build();
 
-                    //            //throw new InvalidOperationException();
-                    //        });
-                    //    });
-                    //});
+// Configure the HTTP request pipeline.
 
-                    webBuilder.UseStartup<Startup>();
-                });
-
-        public class DoNothingHandler : ConnectionHandler
-        {
-            private readonly ILogger<DoNothingHandler> _logger;
-
-            public DoNothingHandler(ILogger<DoNothingHandler> logger)
-            {
-                _logger = logger;
-            }
-
-            public override async Task OnConnectedAsync(ConnectionContext connection)
-            {
-                _logger.LogInformation(connection.ConnectionId + " connected");
-
-                // Handle the connection
-
-                _logger.LogInformation(connection.ConnectionId + " disconnected");
-            }
-        }
-    }
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
 }
+else
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+
+// Inline middleware example
+app.Use(async (ctx, next) =>
+{
+    var stopWatch = Stopwatch.StartNew();
+
+    await next(); // call next middleware in pipeline
+
+    stopWatch.Stop();
+
+    var recorder = ctx.RequestServices.GetRequiredService<IMetricRecorder>();
+
+    recorder.RecordRequest(ctx.Response.StatusCode, stopWatch.ElapsedMilliseconds);
+});
+
+// Direct registration
+app.UseMiddleware<MetricMiddleware>();
+
+// Extension method registration: best practice for libraries!
+app.UseMetrics();
+
+// Adds endpoint logging before "UseRouting", so this is not "Endpoint aware"
+app.UseMiddleware<EndpointLoggingMiddleware>();
+
+app.UseRouting(); // This maps the request to a suitable Endpoint (if possible)
+
+// Adds endpoint logging again, now "Endpoint aware"
+app.UseMiddleware<EndpointLoggingMiddleware>();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AspNetCoreAnatomySamples.Models;
+﻿using AspNetCoreAnatomySamples.Models;
 using AspNetCoreAnatomySamples.Models.Output;
 using Microsoft.Extensions.Caching.Memory;
 

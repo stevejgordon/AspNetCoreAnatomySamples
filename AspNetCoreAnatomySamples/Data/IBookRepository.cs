@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using AspNetCoreAnatomySamples.Models;
+﻿using AspNetCoreAnatomySamples.Models;
 using AspNetCoreAnatomySamples.Models.Output;
 
 namespace AspNetCoreAnatomySamples.Data

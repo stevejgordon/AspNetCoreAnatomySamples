@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AspNetCoreAnatomySamples.Core
+﻿namespace AspNetCoreAnatomySamples.Core
 {
     public interface IMetricRecorder
     {

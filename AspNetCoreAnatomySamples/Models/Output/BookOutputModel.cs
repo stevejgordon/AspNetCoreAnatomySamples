@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace AspNetCoreAnatomySamples.Models.Output
+﻿namespace AspNetCoreAnatomySamples.Models.Output
 {
     public class BookOutputModel : MutableOutputModelBase
     {
