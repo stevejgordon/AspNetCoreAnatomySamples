@@ -11,7 +11,8 @@ namespace AspNetCoreAnatomySamples.Customisation.ActionFilter
         public void OnActionExecuting(ActionExecutingContext context)
         {
             // Do we have a bound dateRange?
-            if (context.ActionArguments.TryGetValue("dateRange", out var dateRangeArg) && dateRangeArg is DateRange dateRange)
+            if (context.ActionArguments.TryGetValue("dateRange", out var dateRangeArg) && 
+                dateRangeArg is DateRange dateRange)
             {
                 // If so, is the range less than 2 years?
                 if (dateRange.EndDate > dateRange.StartDate.AddYears(2))
